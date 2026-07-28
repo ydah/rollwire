@@ -185,6 +185,8 @@ The CI support matrix is:
 | 3.1 | ✓ | ✓ | — |
 | 3.2 | ✓ | ✓ | ✓ |
 | 3.3 | ✓ | ✓ | ✓ |
+| 3.4 | ✓ | ✓ | ✓ |
+| 4.0 | ✓ | ✓ | ✓ |
 
 Ruby 3.1 with Active Record 8.0 is excluded because Active Record 8.0 requires
 Ruby 3.2 or newer. PostgreSQL and MySQL each have an Active Record 8.0 smoke
