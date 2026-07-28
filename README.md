@@ -1,4 +1,4 @@
-# Rollwire
+# Rollwire [![Gem Version](https://badge.fury.io/rb/rollwire.svg)](https://badge.fury.io/rb/rollwire) [![CI](https://github.com/ydah/rollwire/actions/workflows/main.yml/badge.svg)](https://github.com/ydah/rollwire/actions/workflows/main.yml)
 
 Rollwire detects `ActiveRecord::Rollback` exceptions that Rails
 silently ignores when a nested transaction joins its parent without creating a
