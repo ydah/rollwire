@@ -4,6 +4,7 @@ AllCops:
   TargetRubyVersion: 3.1
   Exclude:
     - "gemfiles/**/*"
+    - "vendor/**/*"
 
 Metrics/BlockLength:
   Exclude:
