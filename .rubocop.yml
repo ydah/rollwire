@@ -11,8 +11,18 @@ Metrics/BlockLength:
     - "rollwire.gemspec"
 
 Metrics/MethodLength:
+  Max: 50
   Exclude:
     - "spec/**/*"
+
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
 
 Gemspec/DevelopmentDependencies:
   Enabled: false
@@ -22,3 +32,7 @@ Style/Documentation:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Style/SuperArguments:
+  Exclude:
+    - "lib/rollwire/patches/database_statements.rb"

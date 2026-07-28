@@ -2,6 +2,7 @@
 
 require "rollwire"
 require_relative "support/database"
+require_relative "support/notification_collector"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -12,5 +13,12 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+
+  config.before do
+    Rollwire.reset_configuration!
+    Rollwire::WriteCounter.reset!
+    User.delete_all
+    SecondaryUser.delete_all
   end
 end

@@ -44,3 +44,15 @@ DatabaseSupport.establish_connection
 
 class User < ActiveRecord::Base
 end
+
+class SecondaryRecord < ActiveRecord::Base
+  self.abstract_class = true
+  establish_connection(DatabaseSupport.configuration)
+end
+
+SecondaryRecord.connection.create_table(:secondary_users, force: true) do |table|
+  table.string :name, null: false
+end
+
+class SecondaryUser < SecondaryRecord
+end
