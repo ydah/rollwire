@@ -44,6 +44,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activerecord", ">= 7.1"
 
   spec.add_development_dependency "appraisal", "~> 2.5"
+  spec.add_development_dependency "benchmark", ">= 0.3"
   spec.add_development_dependency "benchmark-ips", "~> 2.14"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.13"

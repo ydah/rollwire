@@ -13,6 +13,7 @@ module DatabaseSupport
         database: ENV.fetch("DB_NAME", "rollwire_test"),
         host: ENV.fetch("DB_HOST", "127.0.0.1"),
         password: ENV.fetch("DB_PASSWORD", "postgres"),
+        port: ENV.fetch("DB_PORT", 5432),
         username: ENV.fetch("DB_USERNAME", "postgres")
       }
     when "mysql2"
@@ -21,6 +22,7 @@ module DatabaseSupport
         database: ENV.fetch("DB_NAME", "rollwire_test"),
         host: ENV.fetch("DB_HOST", "127.0.0.1"),
         password: ENV.fetch("DB_PASSWORD", "root"),
+        port: ENV.fetch("DB_PORT", 3306),
         username: ENV.fetch("DB_USERNAME", "root")
       }
     else

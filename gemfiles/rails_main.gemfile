@@ -1,0 +1,9 @@
+source "https://rubygems.org"
+
+git "https://github.com/rails/rails.git" do
+  gem "activemodel"
+  gem "activerecord"
+  gem "activesupport"
+end
+
+gemspec path: "../"

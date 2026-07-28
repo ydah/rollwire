@@ -43,6 +43,18 @@ RSpec.describe "ignored nested rollback detection" do
     expect(reports).to be_empty
   end
 
+  it "detects subclasses of ActiveRecord::Rollback" do
+    rollback_class = Class.new(ActiveRecord::Rollback)
+    User.transaction do
+      User.transaction do
+        User.create!(name: "Nemu")
+        raise rollback_class
+      end
+    end
+
+    expect(reports.size).to eq(1)
+  end
+
   it "does not report or retain writes from requires_new transactions" do
     User.transaction do
       User.transaction(requires_new: true) do

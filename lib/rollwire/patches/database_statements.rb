@@ -10,9 +10,9 @@ module Rollwire
 
       return super(**options, &block) unless joined && block
 
-      inner_location = Rollwire.caller_location
       pushed = false
       begin
+        inner_location = Rollwire.caller_location
         WriteCounter.push_frame(self)
         pushed = true
       rescue StandardError => e

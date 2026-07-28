@@ -15,6 +15,17 @@ RSpec.describe "Rollwire operation modes and controls" do
     expect(reports).to be_empty
   end
 
+  it "preserves Rails behavior and does not pop if pushing a frame fails" do
+    allow(Rollwire::WriteCounter).to receive(:push_frame).and_raise("counter failed")
+    allow(Rollwire::WriteCounter).to receive(:pop_frame).and_call_original
+
+    run_ignored_rollback
+
+    expect(Rollwire::WriteCounter).not_to have_received(:pop_frame)
+    expect(User.order(:id).pluck(:name)).to eq(%w[Kotori Nemu])
+    expect(log_output.string).to include("internal error: RuntimeError: counter failed")
+  end
+
   it "keeps both records in log mode" do
     Rollwire.configuration.mode = :log
 
@@ -50,6 +61,23 @@ RSpec.describe "Rollwire operation modes and controls" do
     Rollwire.configuration.ignore_if = ->(report) { report.inner_location.include?("spec/") }
     run_ignored_rollback
     expect(reports).to be_empty
+  end
+
+  it "restores suppression after an exception" do
+    expect do
+      Rollwire.suppress { raise "application failure" }
+    end.to raise_error("application failure")
+
+    run_ignored_rollback
+    expect(reports.size).to eq(1)
+  end
+
+  it "can disable outer-location capture" do
+    Rollwire.configuration.capture_outer_location = false
+
+    run_ignored_rollback
+
+    expect(reports.first.outer_location).to be_nil
   end
 
   it "can detect without write counting" do
